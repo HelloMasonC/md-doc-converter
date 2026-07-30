@@ -1,5 +1,50 @@
 # MD文档转换工具 v1.1.1
 
+<p align="left">
+  <a href="https://github.com/HelloMasonC/md-doc-converter/stargazers">
+    <img alt="GitHub Stars" src="https://img.shields.io/github/stars/HelloMasonC/md-doc-converter?style=flat-square&logo=github&label=Stars&color=%23f5c518" />
+  </a>
+  <a href="https://github.com/HelloMasonC/md-doc-converter/forks">
+    <img alt="GitHub Forks" src="https://img.shields.io/github/forks/HelloMasonC/md-doc-converter?style=flat-square&logo=github&label=Forks&color=%232a8cff" />
+  </a>
+  <a href="https://github.com/HelloMasonC/md-doc-converter/blob/master/README.md#L351-L353">
+    <img alt="License" src="https://img.shields.io/github/license/HelloMasonC/md-doc-converter?style=flat-square&color=%2397ca00" />
+  </a>
+  <a href="https://github.com/HelloMasonC/md-doc-converter/releases">
+    <img alt="Version" src="https://img.shields.io/badge/version-v1.1.1-blue?style=flat-square" />
+  </a>
+  <a href="#">
+    <img alt="Platform Windows" src="https://img.shields.io/badge/platform-Windows-lightgray?style=flat-square&logo=windows&logoColor=%230078d6" />
+  </a>
+  <a href="#">
+    <img alt="Python 3.9+" src="https://img.shields.io/badge/Python-3.9%2B-brightgreen?style=flat-square&logo=python&logoColor=%233776ab" />
+  </a>
+  <a href="https://github.com/microsoft/markitdown">
+    <img alt="Powered by MarkItDown" src="https://img.shields.io/badge/Powered%20by-MarkItDown-%230078d4?style=flat-square&logo=microsoft" />
+  </a>
+</p>
+
+<p align="left">
+  <a href="https://github.com/HelloMasonC/md-doc-converter/releases/latest">
+    <img alt="📥 下载最新版 EXE" src="https://img.shields.io/badge/%F0%9F%93%A5%20%E4%B8%8B%E8%E7%8997EXE-v1.1.1-00b894?style=for-the-badge" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://github.com/HelloMasonC/md-doc-converter/releases">
+    <img alt="📦 所有 Release 版本" src="https://img.shields.io/badge/%F0%9F%93%A6%20%E6%89%80%E6%9C%89%20Release%20%E7%89%88%E6%9C%AC-0984e3?style=for-the-badge" />
+  </a>
+</p>
+
+<!-- ===== 主界面截图占位区：等你把 screenshot-main.png 丢进 assets 目录就自动显示了 ===== -->
+<p align="center">
+  <img src="assets/screenshot-main.png" alt="MD文档转换工具主界面截图" title="主界面：文件类型清单 + 图片分类「未启用」橙色虚线框 + 配置视觉模型按钮" />
+</p>
+<blockquote>
+  <p>👆 （截图占位：请将工具主界面截图保存为 <code>assets/screenshot-main.png</code> 即可在此处显示；推荐截取「文件类型清单」已展开状态，包含 6 大类复选框 + 图片分类橙色虚线框 + ⚙️ 配置视觉模型按钮，效果最佳）</p>
+</blockquote>
+<!-- ===== 截图占位区结束 ===== -->
+
+---
+
 基于微软开源 [MarkItDown](https://github.com/microsoft/markitdown) 与 **PyQt5** 开发的 Windows 桌面 GUI 工具，支持将多种文档格式批量转换为标准 Markdown。
 **新增视觉模型配置入口**：图片文件（jpg/png/webp 等）只要填好 OpenAI 兼容接口的 Base URL / API Key / 模型名，就能立即识别图片内容并生成描述文本。
 
