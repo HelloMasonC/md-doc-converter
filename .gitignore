@@ -1,0 +1,44 @@
+# ===== 虚拟环境 =====
+.venv/
+venv/
+env/
+ENV/
+
+# ===== Python 字节码缓存 =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# ===== PyInstaller 构建产物 =====
+build/
+dist/
+*.spec.bak
+*.manifest
+warn-*.txt
+xref-*.html
+
+# ===== Python 工具/IDE =====
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ===== 系统 =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== 日志/临时文件 =====
+*.log
+*.tmp
+*.bak
+
+# ===== 视觉模型本地配置（若误放到项目目录则忽略，正常应放在 ~/.markitdown_tool/） =====
+.markitdown_tool/
+vision_config.json
+

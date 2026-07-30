@@ -1,0 +1,6 @@
+PyQt5>=5.15
+markitdown[all]
+# 内置 Windows / macOS / Linux 静态编译的 ffmpeg
+# 音频（mp3 / m4a / wav / flac 等）转写时会通过 pydub 调 ffmpeg 解码
+# 免安装、免 PATH 配置；PyInstaller 打包时通过 --collect-all imageio_ffmpeg 把二进制一起带走
+imageio-ffmpeg>=0.5
