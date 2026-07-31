@@ -129,8 +129,8 @@
 
 不用装 Python / 不用敲命令 / 拷到 U 盘就能跑。
 
-1. **获取 exe**：项目仓库发布页（Releases）下载 `MD文档转换工具.exe`，或请开发者在本机打包后发给你。
-   - 开发者本机已打包好的位置：`demo-markitdown/dist/MD文档转换工具.exe`
+1. **获取 exe**：项目仓库发布页（Releases）下载 exe（Release 资产文件名为 `MD-Doc-Converter.exe`，下载后可自行重命名为中文，不影响使用），或请开发者在本机打包后发给你。
+   - 开发者本机打包输出：`demo-markitdown/dist/MD文档转换工具.exe`
 2. **双击 exe 启动**即可使用。
 
 > ⚠️ **小提醒**：
