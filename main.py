@@ -112,7 +112,56 @@ def _bootstrap_ffmpeg() -> tuple[bool, str]:
     return True, ffmpeg_exe
 
 
+def _install_crash_logger() -> str:
+    """在 frozen / 无 console 环境下也能拿到 traceback。
+
+    把任何未被捕获的异常 + faulthandler 段错误都写到
+    ``~/.markitdown_tool/logs/crash.log``，并尽力弹出 GUI 提示。
+    返回日志文件路径（若失败返回空字符串）。
+    """
+    import datetime
+    import faulthandler
+    import traceback
+
+    # 优先用 USERPROFILE 而不是 os.path.expanduser("~")，
+    # frozen 环境下 expanduser 偶尔会解析到非预期目录
+    home = os.environ.get("USERPROFILE") or os.path.expanduser("~") or os.getcwd()
+    log_dir = os.path.join(home, ".markitdown_tool", "logs")
+    os.makedirs(log_dir, exist_ok=True)
+    log_path = os.path.join(log_dir, "crash.log")
+    fh = open(log_path, "a", encoding="utf-8", buffering=1)
+    fh.write(f"\n===== {datetime.datetime.now():%Y-%m-%d %H:%M:%S} 进程启动 cwd={os.getcwd()} exe={sys.executable} =====\n")
+    fh.flush()
+    faulthandler.enable(fh)
+
+    def _excepthook(exc_type, exc_value, exc_tb):
+        try:
+            text = "".join(traceback.format_exception(exc_type, exc_value, exc_tb))
+            fh.write(f"[未捕获异常] {datetime.datetime.now():%H:%M:%S}\n{text}\n")
+            fh.flush()
+        except Exception:
+            pass
+        try:
+            from PyQt5.QtWidgets import QMessageBox, QApplication
+            if QApplication.instance() is not None and issubclass(exc_type, Exception):
+                QMessageBox.critical(
+                    None,
+                    "程序出现内部错误",
+                    f"错误类型：{exc_type.__name__}\n"
+                    f"详情:{exc_value}\n\n"
+                    f"完整调用栈已写入：\n{log_path}\n\n"
+                    "程序会继续运行，但当前操作未完成。",
+                )
+        except Exception:
+            pass
+        sys.__excepthook__(exc_type, exc_value, exc_tb)
+
+    sys.excepthook = _excepthook
+    return log_path
+
+
 # 必须在 QApplication / markitdown / pydub 任何真正干活的 import 之前完成注入
+CRASH_LOG = _install_crash_logger()
 FFMPEG_OK, FFMPEG_INFO = _bootstrap_ffmpeg()
 
 
