@@ -90,7 +90,13 @@
 只要你手上有任意 **OpenAI Chat Completions 兼容协议**的多模态接口（例如 Azure OpenAI / 通义千问视觉 / 智谱 GLM-4V / 月之暗面 / 本地 Ollama + API / OneAPI 聚合层……），填 3 项就能立刻启用：
 
 1. 打开主界面 → 展开「文件类型清单」→ 找到橙色虚线的 **图片文件** 分类
-2. 点击右上角 **⚙️  配置视觉模型…** 按钮 → 弹出配置窗口：| 字段           | 示例                                                                                                 | 必填 |
+2. 点击右上角 **⚙️  配置视觉模型…** 按钮 → 弹出配置窗口：
+
+   <p align="center">
+     <img src="assets/screenshot-vision-settings.png" alt="视觉模型配置对话框" title="配置视觉模型对话框：Base URL / API Key / 模型名 / 自定义Prompt / 测试连接" width="500" />
+   </p>
+
+   | 字段           | 示例                                                                                                 | 必填 |
    | -------------- | ---------------------------------------------------------------------------------------------------- | ---- |
    | Base URL       | `https://api.openai.com/v1` 或 `https://dashscope.aliyuncs.com/compatible-mode/v1`               | ✅   |
    | API Key        | `sk-xxxxxxxxxxxxxxxx`（支持「👁 显示」切换明文查看）                                               | ✅   |
@@ -129,7 +135,7 @@
 
 不用装 Python / 不用敲命令 / 拷到 U 盘就能跑。
 
-1. **获取 exe**：项目仓库发布页（Releases）下载 exe（Release 资产文件名为 `MD文档转换工具.exe`，下载后可自行重命名，不影响使用）。
+1. **获取 exe**：项目仓库发布页（Releases）下载 exe（Release 资产文件名为 `md-doc-converter.exe`，下载后可自行重命名，不影响使用）。
 2. **双击 exe 启动**即可使用。
 
 > ⚠️ **小提醒**：
