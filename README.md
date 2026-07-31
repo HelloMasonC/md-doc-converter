@@ -488,6 +488,10 @@ pip install "markitdown[all]"
 
 ## 📝 更新日志
 
+  - **v1.1.2**（hotfix · 修复打包产物 SSL 缺失）：修复 **exe 版点「⚙️ 配置视觉模型」按钮直接闪退** 的严重 bug（报错 `ImportError: DLL load failed while importing _ssl: 找不到指定的程序`）。根因：打包机用的是 Conda/Miniforge base 环境，base 根目录里**缺失 `libcrypto-3-x64.dll` / `libssl-3-x64.dll`**，PyInstaller 通过 `markitdown` 钩子抓到了一对版本不匹配的 OpenSSL 当成 binary 塞进了 PKG，但运行时不被解压到 `_MEI` 临时根目录，导致 `_ssl.pyd` 在 `LoadLibrary` 时找不到依赖库。打包脚本 `MD文档转换工具.spec` 现将这两个 OpenSSL DLL 和 `_ssl.pyd` 用绝对路径显式列到 `binaries` 根目录，保证运行时执行 `import ssl` 不会再炸。
+    - 顺手加了 [`main.py::_install_crash_logger()`]：无 console 的 exe 版在发生未捕获异常 / 段错误时也会把 traceback 写到 `~/.markitdown_tool/logs/crash.log`，下次闪退直接看 log 就行。
+    - `app/ui_main.py` 按钮槽函数加了 try/except，加载对话框失败时弹出带完整调用栈的 QMessageBox，不再静默 crash。
+
   - **v1.1.1**：项目正式命名为 **「MD文档转换工具」**，窗口标题 / README / 打包 spec / exe 名全部同步；README 更新日志精简。
   - **v1.1.0**：图片识别可用。新增「⚙️ 配置视觉模型」对话框（Base URL / API Key / 模型名 + 👁 密钥显示切换 + **1×1 PNG 真实接口连接测试**，保存即时生效）；`app/config.py` / `app/vision_client.py`（标准库 `urllib`，零第三方依赖）/ `app/dialog_vision_settings.py` 三个模块落地；音频/图片分类独立拆分（共 6 大类 40 种）；默认勾选精简为 23 项（去掉冗余 `.md` 与无视觉模型时的图片）；打包命令新增 `--collect-submodules app`。
   - **v1.0.3**：音频开箱即用。内置 `imageio-ffmpeg` 静态版（PATH 注入 + `pydub.AudioSegment.converter` 双兜底）；文件类型 UI 从手动输入框 → 复选框清单 + 常用/全选/清空/折叠；分类标题显示修复（去掉 emoji、每行从 4 列调整为 3 列）。
