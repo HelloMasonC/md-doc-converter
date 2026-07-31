@@ -452,9 +452,21 @@ class MainWindow(QMainWindow):
             self.lbl_image_note.setText(note)
 
     def _open_vision_settings(self):
-        from .dialog_vision_settings import VisionSettingsDialog
-        from app import converter as _converter
-        dlg = VisionSettingsDialog(self)
+        try:
+            from .dialog_vision_settings import VisionSettingsDialog
+            from app import converter as _converter
+            dlg = VisionSettingsDialog(self)
+        except Exception as e:
+            # 打包/环境问题导致模块缺失时给出可读提示，不要让进程直接崩
+            import traceback
+            QMessageBox.critical(
+                self,
+                "无法打开视觉配置",
+                f"加载配置对话框失败：\n{e}\n\n"
+                f"调用栈已写入 ~/.markitdown_tool/logs/crash.log。\n\n"
+                f"调试信息：\n{traceback.format_exc()}",
+            )
+            return
         if dlg.exec_() != dlg.Accepted:
             return
         # 保存后：刷新状态文字 + 强制重建 MarkItDown 单例 & 重新加载视觉 kwargs
