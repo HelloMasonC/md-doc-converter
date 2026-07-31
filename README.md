@@ -26,11 +26,11 @@
 
 <p align="left">
   <a href="https://github.com/HelloMasonC/md-doc-converter/releases/latest">
-    <img alt="📥 下载最新版 EXE" src="https://img.shields.io/badge/%F0%9F%93%A5%20%E4%B8%8B%E8%E7%8997EXE-v1.1.3-00b894?style=for-the-badge" />
+    <img alt="📥 下载最新版 EXE" src="https://img.shields.io/badge/EXE%20v1.1.3-00b894?style=for-the-badge&label=%F0%9F%93%A5%20%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0%E7%89%88&labelColor=555" />
   </a>
     
   <a href="https://github.com/HelloMasonC/md-doc-converter/releases">
-    <img alt="📦 所有 Release 版本" src="https://img.shields.io/badge/%F0%9F%93%A6%20%E6%89%80%E6%9C%89%20Release%20%E7%89%88%E6%9C%AC-0984e3?style=for-the-badge" />
+    <img alt="📦 所有 Release 版本" src="https://img.shields.io/badge/Release-0984e3?style=for-the-badge&label=%F0%9F%93%A6%20%E6%89%80%E6%9C%89&labelColor=555" />
   </a>
 </p>
 
