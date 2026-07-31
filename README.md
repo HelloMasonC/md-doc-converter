@@ -129,7 +129,7 @@
 
 不用装 Python / 不用敲命令 / 拷到 U 盘就能跑。
 
-1. **获取 exe**：项目仓库发布页（Releases）下载 exe（Release 资产文件名为 `md-doc-converter.exe`，下载后可自行重命名为中文，不影响使用）。
+1. **获取 exe**：项目仓库发布页（Releases）下载 exe（Release 资产文件名为 `MD文档转换工具.exe`，下载后可自行重命名，不影响使用）。
 2. **双击 exe 启动**即可使用。
 
 > ⚠️ **小提醒**：
@@ -179,7 +179,7 @@ uv run main.py
 
 ```bash
 # 1. 进入项目目录
-cd demo-markitdown
+cd md-doc-converter
 
 # 2. 创建并激活虚拟环境
 python -m venv .venv
@@ -327,7 +327,7 @@ pip install pyinstaller
 ### 产物位置 + 使用
 
 ```
-demo-markitdown/
+md-doc-converter/
 ├── build/                       # 中间产物（.gitignore 已忽略，不用管）
 ├── dist/
 │   └── MD文档转换工具.exe         # ⭐ 这个就是你要的成品（约 230MB，含内置 ffmpeg）
@@ -398,7 +398,7 @@ git check-ignore -v build/MD文档转换工具/Analysis-00.toc
 ## 📂 项目结构
 
 ```
-demo-markitdown/
+md-doc-converter/
 ├── main.py                    # 程序入口（高 DPI + PyQt5 缺失提示 + 视觉模型 client 注入）
 ├── requirements.txt           # 依赖：PyQt5、markitdown[all]、imageio-ffmpeg
 ├── 启动.bat                    # 辅助启动脚本（CMD 版，懂的同学可直接用，文档不推荐）
