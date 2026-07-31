@@ -167,11 +167,36 @@ FFMPEG_OK, FFMPEG_INFO = _bootstrap_ffmpeg()
 
 # 尝试导入 PyQt5，若缺失则给出友好提示并退出
 try:
+    import PyQt5
     from PyQt5.QtWidgets import QApplication
     from PyQt5.QtCore import Qt
 except ImportError:
     print("未检测到 PyQt5，请先运行: pip install PyQt5>=5.15")
     sys.exit(1)
+
+# 修复 Qt 平台插件找不到的问题。
+# 根因：PyQt5 缺少 qt.conf，且 QLibraryInfo.location() 在中文路径下
+# 会返回含 '?' 的乱码路径，导致 Qt 无法定位 platforms/qwindows.dll。
+# 解决：用 PyQt5.__file__（Python 正确处理 Unicode）推导插件路径。
+_pyqt5_dir = os.path.dirname(PyQt5.__file__)
+_qt5_dir = os.path.join(_pyqt5_dir, "Qt5")
+_qt_plugins_path = os.path.join(_qt5_dir, "plugins")
+_qt_platform_plugin_path = os.path.join(_qt_plugins_path, "platforms")
+if os.path.isdir(_qt_platform_plugin_path):
+    os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = _qt_platform_plugin_path
+
+_qt_bin_path = os.path.join(_qt5_dir, "bin")
+if os.path.isdir(_qt_bin_path):
+    # 将 Qt bin 目录加入 PATH，确保运行时能加载 Qt DLL
+    _path_env = os.environ.get("PATH", "")
+    if _qt_bin_path not in _path_env:
+        os.environ["PATH"] = _qt_bin_path + os.pathsep + _path_env
+    # Windows: 显式添加 DLL 搜索目录（Python 3.8+）
+    if sys.platform == "win32" and hasattr(os, "add_dll_directory"):
+        try:
+            os.add_dll_directory(_qt_bin_path)
+        except OSError:
+            pass
 
 # 启用高 DPI 缩放支持，必须在创建 QApplication 之前调用
 QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
