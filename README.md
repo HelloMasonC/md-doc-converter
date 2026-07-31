@@ -26,7 +26,7 @@
 
 <p align="left">
   <a href="https://github.com/HelloMasonC/md-doc-converter/releases/latest">
-    <img alt="📥 下载最新版 EXE" src="https://img.shields.io/badge/%F0%9F%93%A5%20%E4%B8%8B%E8%E7%8997EXE-v1.1.1-00b894?style=for-the-badge" />
+    <img alt="📥 下载最新版 EXE" src="https://img.shields.io/badge/%F0%9F%93%A5%20%E4%B8%8B%E8%E7%8997EXE-v1.1.3-00b894?style=for-the-badge" />
   </a>
     
   <a href="https://github.com/HelloMasonC/md-doc-converter/releases">
